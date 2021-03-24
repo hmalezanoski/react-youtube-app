@@ -4,18 +4,27 @@ import youtube from "../api/youtube";
 
 class App extends react.Component {
 
+    state = {videos:[]}
+
     onTermSubmit= async (term) =>
     {
-       await youtube.get('/search',{
+       const response = await youtube.get('/search',{
             params:{
                 q:term
             }
         })
 
+
+        this.setState({videos:response.data.items})
+
     }
 
     render() {
-        return <div className="ui container"><SearchBar onFormSubmit={this.onTermSubmit} /></div>
+        return (
+            <div className="ui container"><SearchBar onFormSubmit={this.onTermSubmit} />
+            <p>I have {this.state.videos.length} videos</p>
+            </div>
+        )
     }
 
 }
