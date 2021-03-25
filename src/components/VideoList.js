@@ -6,10 +6,9 @@ const VideoList = ({videoList}) => {
    const renderedList =  videoList.map((video) => {
         return <VideoItem video = {video}/>
     })
-    console.log(videoList.length)
 
     return (
-        <div>
+        <div className="ui relaxed divided list">
             {renderedList}
         </div>
     )
