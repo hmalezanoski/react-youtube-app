@@ -12,6 +12,10 @@ class App extends react.Component {
 
     }
 
+    componentDidMount() {
+        this.onTermSubmit('Buildings')
+    }
+
     onTermSubmit= async (term) =>
     {
        const response = await youtube.get('/search',{
@@ -21,7 +25,10 @@ class App extends react.Component {
         })
 
 
-        this.setState({videos:response.data.items})
+        this.setState({
+            videos:response.data.items,
+            selectedVideo:response.data.items[0]
+        })
 
     }
 
